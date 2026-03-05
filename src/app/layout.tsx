@@ -29,13 +29,13 @@ export default function RootLayout({
     <ClerkProvider>
       <TRPCReactProvider>
         <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          {children}
-          <Toaster />
-        </body>
-      </html>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            {children}
+            <Toaster />
+          </body>
+        </html>
       </TRPCReactProvider>
     </ClerkProvider>
   );

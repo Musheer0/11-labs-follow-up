@@ -22,7 +22,8 @@
         "noUnknownAtRules": "off",
         "noArrayIndexKey": "off",
         "noShadowRestrictedNames": "off",
-        "noDocumentCookie": "off"
+        "noDocumentCookie": "off",
+        "noExplicitAny": "off"
       },
       "a11y": {
         "useSemanticElements": "off",

@@ -1,7 +1,18 @@
 import { TextToSpeechView } from "@/features/text-to-speech/components/text-to-speech-view";
+import { HydrateClient, prefetch, trpc } from "@/trpc/server";
 
-const page = () => {
-  return <TextToSpeechView />;
+const page = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ text: string; voiceId: string }>;
+}) => {
+  const { text, voiceId } = await searchParams;
+  prefetch(trpc.voices.getAll.queryOptions());
+  return (
+    <HydrateClient>
+      <TextToSpeechView initialValues={{ text, voiceId }} />
+    </HydrateClient>
+  );
 };
 
 export default page;

@@ -3,20 +3,18 @@ import "dotenv/config";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { z } from "zod";
-import { PrismaPg } from "@prisma/adapter-pg";
 import {
   PutObjectCommand,
-  S3Client,
   type PutObjectCommandInput,
+  S3Client,
 } from "@aws-sdk/client-s3";
-
+import { PrismaPg } from "@prisma/adapter-pg";
+import { z } from "zod";
+import { CANONICAL_SYSTEM_VOICE_NAMES } from "../src/features/voices/data/voice-scoping";
 import {
   PrismaClient,
   type VoiceCategory,
 } from "../src/generated/prisma/client";
-
-import { CANONICAL_SYSTEM_VOICE_NAMES } from "../src/features/voices/data/voice-scoping";
 
 const SYSTEM_VOICES_DIR = path.join(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -37,7 +35,7 @@ const prisma = new PrismaClient({ adapter });
 
 const r2 = new S3Client({
   region: "auto",
-    endpoint:"https://t3.storage.dev",
+  endpoint: "https://t3.storage.dev",
   credentials: {
     accessKeyId: env.R2_ACCESS_KEY_ID,
     secretAccessKey: env.R2_SECRET_ACCESS_KEY,
@@ -260,7 +258,7 @@ async function seedSystemVoice(name: string) {
 
     throw error;
   }
-};
+}
 
 async function main() {
   console.log(
